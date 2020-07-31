@@ -2,12 +2,13 @@ import React from 'react';
 import './list.css';
 import Product from '../Product/product.js';
 
-function List() {
+const List = function ({ produtos }) {
+
   return (
     <div className="list">
-        <Product />
-        <Product />
-        <Product />
+      {produtos.map((produto, index) =>
+      <Product key={index} nome={produto.nome} preco={produto.preco} adicionarNoCarrinho={produto.adicionar} />
+      )}
     </div>
   );
 };
