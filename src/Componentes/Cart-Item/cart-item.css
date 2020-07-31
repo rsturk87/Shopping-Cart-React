@@ -1,0 +1,16 @@
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-right: 15px;
+    font-size: .9em;
+}
+
+.cart-item-name {
+    font-weight: 300;
+}
+
+.cart-item-price {
+    font-weight: 700;
+}
