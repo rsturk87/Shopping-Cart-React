@@ -1,19 +1,23 @@
 import React from 'react';
 import './product.css';
 
-const Product = function ({ nome, preco, imagem, adicionarNoCarrinho }) {
+const Product = function ({ name, price, image, quantity, addToCart }) {
+  
+  const imagePath = `/images/${image}`;
+  const formatedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  
   return (
     <div className="product">
-        <img src={require('../../images/tenis-vermelho.jpg')} className="product-img" />
+        <img src={imagePath} className="product-img" alt={name} />
         <div className="product-info">
             <div className="product-text">
-                <h1 className="product-title">{nome}</h1>
-                <h3 className="product-price">R$ {preco}</h3>
+                <h1 className="product-title">{name}</h1>
+                <h3 className="product-price">{formatedPrice}</h3>
             </div>
-            <button className="buy-button" onClick={adicionarNoCarrinho}>Comprar</button>
+            <button className="buy-button" onClick={addToCart}>Comprar</button>
         </div>
     </div>
   );
 };
 
-export default Product;
+export default Product

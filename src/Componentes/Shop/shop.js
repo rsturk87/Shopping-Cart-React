@@ -2,46 +2,71 @@ import React from 'react';
 import './shop.css';
 import List from '../List/list.js';
 import Cart from '../Cart/cart.js';
+import getProducts from '../../services/product-service';
 
 class Shop extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      produtos: [{ nome: 'Chuteira Copa Society', preco: '109,00', imagem: '../../images/tenis-vermelho.jpg' }, 
-      { nome: 'Camiseta Essentials', preco: '70,00' }, 
-      { nome: 'Moletom Warm-Up', preco: '220,00' }],
-      
-      carrinho: []
+      products: [],
+      cart: []
     }
   };
 
-  adicionarNoCarrinho = nome => () => {
-    this.setState({ carrinho: [...this.state.carrinho, { nome: nome }] });
-  };
+  async componentDidMount() {
+    const products = await getProducts();
+    this.setState({ products: products });
+  }
 
-  removerDoCarrinho = nome => () => {
-    const carrinhoModificado = this.state.carrinho.filter(produto => produto.nome !== nome);
-    this.setState({ carrinho: carrinhoModificado });
-  };
+  addToCart = id => () => {
+    const item = this.state.cart.find(product => product.id === id);
+    if (item) {
+      if (item.quantity < 5) {
+        this.updateCartItemQuantity(id)(item.quantity + 1);
+      }
+    }
+    else {
+      const item = this.state.products.find(product => product.id === id);
+      this.setState({ cart: [...this.state.cart, item] });
+    }
+  }
+
+  updateCartItemQuantity = id => quantity => {
+    quantity = parseInt(quantity);
+    const cart = [...this.state.cart];
+    const index = this.state.cart.findIndex(product => product.id === id);
+    if (index > -1) {
+      if (quantity > 0 && quantity <= 5) {
+        cart[index].quantity = quantity;
+        this.setState({ cart: cart });
+      }
+    }
+  }
+
+  removeItemFromCart = id => () => {
+    const cartWithoutItem = this.state.cart.filter(product => product.id !== id);
+    this.setState({ cart: cartWithoutItem });
+  }
 
   render() {  
-    const produtos = this.state.produtos.map(produto => {
-      return { nome: produto.nome, preco: produto.preco, imagem: produto.imagem, adicionar: this.adicionarNoCarrinho(produto.nome) };
-    });
+    const products = this.state.products.map(item => ({ ...item, addToCart: this.addToCart(item.id) }));
 
-    const produtosCarrinho = this.state.carrinho.map(produto => {
-      return { nome: produto.nome, preco: produto.preco, remover: this.removerDoCarrinho(produto.nome) };
+    const productsOnCart = this.state.cart.map(item => {
+      return {
+        ...item,
+        updateQuantity: this.updateCartItemQuantity(item.id),
+        removeFromCart: this.removeItemFromCart(item.id)
+      }
     });
     
     return (
       <div className="shop">
-          <List produtos={produtos} />
-          <Cart produtos={produtosCarrinho} />
+          <List products={products} />
+          <Cart products={productsOnCart} />
       </div>
     );
   };
-
 };
 
 export default Shop;

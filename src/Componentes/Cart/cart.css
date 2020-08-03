@@ -47,3 +47,9 @@ hr{
 .total span {
     color: #f7006b;
 }
+
+@media (max-width: 450px) {
+    .cart {
+        margin: 20px;
+    }
+}

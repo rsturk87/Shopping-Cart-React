@@ -52,3 +52,25 @@
     transition: ease-out 300ms;
     border: none;
 }
+
+@media (max-width: 800px) {
+    .buy-button {
+        max-height: 30px;
+        width: 80px;
+        padding: 5px;
+    }
+
+    .product-title {
+        font-size: .8em;
+    }
+
+    .product-price {
+        font-size: .7em;
+    }
+}
+
+@media (max-width: 450px) {
+    .product {
+        width: 80vw;
+    }
+}

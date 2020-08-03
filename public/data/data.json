@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "Chuteira Copa Society",
+      "price": 110,
+      "quantity": 1,
+      "image": "tenis-vermelho.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Moletom Warm-Up",
+      "price": 220,
+      "quantity": 1,
+      "image": "moleton-azul.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Camiseta Essentials",
+      "price": 70,
+      "quantity": 1,
+      "image": "camisa-vermelha.jpg"
+    }
+  ]
