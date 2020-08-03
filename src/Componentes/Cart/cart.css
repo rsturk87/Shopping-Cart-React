@@ -48,7 +48,7 @@ hr{
     color: #f7006b;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 750px) {
     .cart {
         margin: 20px;
     }
