@@ -6,8 +6,8 @@ const List = function ({ products }) {
 
   return (
     <div className="list">
-      {products.map((product, index) =>
-      <Product key={index} name={product.name} price={product.price} image={product.image} quantity={product.quantity} addToCart={products.addToCart} />
+      {products.map((product) =>
+      <Product key={product.id} name={product.name} price={product.price} image={product.image} quantity={product.quantity} addToCart={product.addToCart} />
       )}
     </div>
   );

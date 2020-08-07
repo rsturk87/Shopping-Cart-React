@@ -1,7 +1,9 @@
 .cart-item {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+    gap: 5px;
     justify-content: space-between;
+    align-content: center;
     margin-top: 10px;
     margin-right: 15px;
     font-size: .9em;
@@ -22,4 +24,20 @@
     background: #fff;
     font-weight: 700;
     color: silver;
+}
+
+.quantity {
+    width: 30px;
+    height: 20px;
+    padding: 3px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 12px;
+    border: solid 1px #24242470;
+    outline: none;
+    color: #242424;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {  
+    opacity: 1;
 }

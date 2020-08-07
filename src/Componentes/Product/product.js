@@ -1,7 +1,7 @@
 import React from 'react';
 import './product.css';
 
-const Product = function ({ name, price, image, quantity, addToCart }) {
+const Product = function ({ name, price, image, addToCart }) {
   
   const imagePath = `/images/${image}`;
   const formatedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
